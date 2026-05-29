@@ -1,0 +1,9 @@
+Order_ID,Customer_Name,Region,Sales,Date,Category
+1001,john,West,500,01-01-2026,electronics
+1002,Anna,East,700,02-01-2026,Furniture
+1003,john,West,500,01-01-2026,electronics
+1004,Mike,,300,03-01-2026,clothing
+1005,Sara,North,,05-01-2026,Electronics
+1006,DAVID,South,900,06-01-2026,FURNITURE
+1007,anna,East,450,07-01-2026,furniture
+1008,Tom,West,650,08-01-2026,Clothing

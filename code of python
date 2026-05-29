@@ -1,0 +1,70 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# -----------------------------
+# LOAD DATA
+# -----------------------------
+df = pd.read_csv("sales_data.csv")
+
+print("ORIGINAL DATA")
+print(df)
+
+# -----------------------------
+# REMOVE DUPLICATES
+# -----------------------------
+df = df.drop_duplicates()
+
+# -----------------------------
+# HANDLE MISSING VALUES
+# -----------------------------
+
+# Fill missing Region
+df['Region'] = df['Region'].fillna('Unknown')
+
+# Fill missing Sales with average
+df['Sales'] = df['Sales'].fillna(df['Sales'].mean())
+
+# -----------------------------
+# FIX TEXT FORMATTING
+# -----------------------------
+
+# Customer names proper format
+df['Customer_Name'] = df['Customer_Name'].str.title()
+
+# Category proper format
+df['Category'] = df['Category'].str.title()
+
+# -----------------------------
+# CONVERT DATE FORMAT
+# -----------------------------
+df['Date'] = pd.to_datetime(df['Date'])
+
+# -----------------------------
+# SAVE CLEANED DATA
+# -----------------------------
+df.to_excel("cleaned_sales_report.xlsx", index=False)
+
+print("\nCLEANED DATA")
+print(df)
+
+# -----------------------------
+# CREATE SALES SUMMARY
+# -----------------------------
+summary = df.groupby('Region')['Sales'].sum()
+
+print("\nSALES SUMMARY")
+print(summary)
+
+# -----------------------------
+# CREATE BAR CHART
+# -----------------------------
+summary.plot(kind='bar')
+
+plt.title("Sales by Region")
+plt.xlabel("Region")
+plt.ylabel("Sales")
+
+# Save chart
+plt.savefig("sales_chart.png")
+
+plt.show()
